@@ -1,69 +1,58 @@
 <template>
-  <div class="home_container">
-    <van-nav-bar title="标题" fixed />
-    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-
-        <ArticleInfo v-for="(item,i) in articleList" :key="i" :title="item.title" :cover="item.cover" :author-name="item.aut_name" :comment-count="item.comm_count" :publish-time="item.pubdate"></ArticleInfo>
-
-      </van-list>
-
-    </van-pull-refresh>
+  <div>
+    <!-- 最顶部navbar -->
+    <van-nav-bar title="明日头条" fixed>
+      <template #right>
+        <van-icon name="search" size="0.48rem" />
+      </template>
+    </van-nav-bar>
+    <!-- 顶部频道标签 -->
+    <van-tabs v-model="active" sticky offset-top="1.22666667rem">
+      <van-tab :title="channel.name" v-for="channel in channelsList" :key="channel.id">{{ channel.name }}</van-tab>
+    </van-tabs>
+    <!-- 右侧 “+”小图标 -->
+    <van-icon name="plus" size="0.48rem" />
   </div>
-
 </template>
 
 <script>
-import ArticleInfo from '@/components/ArticleInfo/ArticleInfo.vue'
-import getArticleListAPI from '@/api/getArticleListAPI'
+import { getUserChannels } from '@/api/homeAPI'
 export default {
   name: 'MyHome',
   data() {
     return {
-      data: 1,
-      limit: 10,
-      articleList: [],
-      // 上拉加载更多 vant
-      finished: false,
-      loading: true,
-      // 下拉刷新
-      isLoading: false
+      // vant
+      active: 0,
+      channelsList: []
     }
   },
   created() {
-    this.getArticleList()
+    this.getChannelsList()
   },
   methods: {
-    async getArticleList(isRefresh) {
-      const { data: res } = await getArticleListAPI(this.data, this.limit)
-      if (res.length === 0) this.finished = true
-      if (isRefresh) {
-        this.articleList = [...res, ...this.articleList]
-        this.isLoading = false
-        this.$toast('更新成功')
-      } else {
-        this.articleList = [...this.articleList, ...res]
-        this.loading = false
+    async getChannelsList() {
+      const { data: res } = await getUserChannels()
+      console.log(res)
+      if (res.message === 'OK') {
+        this.channelsList = res.data.channels
       }
-    },
-    onLoad() {
-      this.data++
-      this.getArticleList()
-    },
-    onRefresh() {
-      this.data++
-      this.getArticleList(true)
     }
-  },
-  components: {
-    ArticleInfo
   }
 }
 </script>
 
 <style lang="less" scoped>
-.home_container {
-  padding: 46px 0 50px;
+// 预留右侧 + 号的空位
+/deep/ .van-tabs__wrap {
+  padding-right: 36px;
+  background-color: white;
+}
+// 右侧 + 号定位
+/deep/ .van-icon-plus {
+  position: fixed;
+  top: 52px;
+  right: 4px;
+  padding: 5px;
+  z-index: 999;
 }
 </style>
