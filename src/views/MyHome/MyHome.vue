@@ -8,7 +8,10 @@
     </van-nav-bar>
     <!-- 顶部频道标签 -->
     <van-tabs v-model="active" sticky offset-top="1.22666667rem">
-      <van-tab :title="channel.name" v-for="channel in channelsList" :key="channel.id">{{ channel.name }}</van-tab>
+      <van-tab :title="channel.name" v-for="channel in channelsList" :key="channel.id">
+        <!-- 子组件文章列表 -->
+        <art-list :channel-id="channel.id"></art-list>
+      </van-tab>
     </van-tabs>
     <!-- 右侧 “+”小图标 -->
     <van-icon name="plus" size="0.48rem" />
@@ -17,6 +20,7 @@
 
 <script>
 import { getUserChannels } from '@/api/homeAPI'
+import ArtList from '@/components/ArtList/ArtList.vue'
 export default {
   name: 'MyHome',
   data() {
@@ -32,11 +36,14 @@ export default {
   methods: {
     async getChannelsList() {
       const { data: res } = await getUserChannels()
-      console.log(res)
+      console.log('getChannelsList', res)
       if (res.message === 'OK') {
         this.channelsList = res.data.channels
       }
     }
+  },
+  components: {
+    ArtList
   }
 }
 </script>
