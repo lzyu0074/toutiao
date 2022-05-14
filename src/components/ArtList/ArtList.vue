@@ -5,7 +5,7 @@
       <!-- van-list上拉刷新 -->
       <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false">
         <!-- 一条表示一个文章 -->
-        <art-item v-for="art in artList" :key="art.art_id" :article-obj="art"></art-item>
+        <art-item v-for="art in artList" :key="art.art_id" :article-obj="art" @dislikeArticleSuccess="removeDislikeArticle"></art-item>
       </van-list>
     </van-pull-refresh>
   </div>
@@ -29,7 +29,7 @@ export default {
   },
 
   methods: {
-    // 初始化文章列表
+    // 初始化文章列表(获取文章列表)
     async initArtList(isPullRefresh) {
       const { data: res } = await getArtList(this.channelId, this.timestamp)
       if (res.message === 'OK') {
@@ -65,6 +65,12 @@ export default {
         this.$refs.vanPullRefresh.loadingText = '没有更多了'
         this.$refs.vanPullRefresh.loosingText = '没有更多了loosing'
       }
+    },
+    // 子组件不喜欢文章，把对应文章移除列表
+    removeDislikeArticle(artId) {
+      this.artList = this.artList.filter((item) => item.art_id !== artId)
+      // 防止文章列表不足以撑满整个屏幕，导致上拉不加载的问题
+      if (this.artList.length < 10) this.initArtList()
     }
   },
   props: {

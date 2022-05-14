@@ -5,7 +5,10 @@ import store from '@/store'
 export const request = axios.create({
   // 原来的
   // baseURL: 'https://www.escook.cn'
-  baseURL: 'http://www.liulongbin.top:8000'
+  // 刘龙宾老师从黑马离职，接口已挂：
+  // baseURL: 'http://www.liulongbin.top:8000'
+  // 新接口基地址： 视频地址：https://www.bilibili.com/video/BV1D3411L7PP?spm_id_from=333.337.search-card.all.click
+  baseURL: 'http://geek.itheima.net'
 })
 
 request.interceptors.request.use(config => {
