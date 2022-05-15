@@ -1,4 +1,5 @@
 <template>
+  <!-- 主页面组件，在这里展示主页和我的 -->
   <div>
     <router-view></router-view>
     <!-- tabbar -->

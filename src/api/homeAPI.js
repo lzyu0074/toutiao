@@ -11,3 +11,9 @@ export const reqDislikeArticle = (target) => request.post('/v1_0/article/dislike
 
 // 反馈垃圾类容、举报
 export const reqReport = (target, type, remark) => request({ url: '/v1_0/article/reports', method: 'post', data: { target, type, remark } })
+
+// 获取所有频道列表
+export const reqAllChannels = () => request({ url: '/v1_0/channels', method: 'get' })
+
+// 添加频道：（覆盖）
+export const reqAddChannels = (channels) => request.put('/v1_0/user/channels', { channels })

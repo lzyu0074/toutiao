@@ -3,7 +3,7 @@
     <!-- van-pull-refresh下拉加载更多 -->
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh" ref="vanPullRefresh">
       <!-- van-list上拉刷新 -->
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false">
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="5">
         <!-- 一条表示一个文章 -->
         <art-item v-for="art in artList" :key="art.art_id" :article-obj="art" @dislikeArticleSuccess="removeDislikeArticle"></art-item>
       </van-list>
