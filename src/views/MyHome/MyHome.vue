@@ -3,7 +3,8 @@
     <!-- 最顶部navbar -->
     <van-nav-bar title="明日头条" fixed>
       <template #right>
-        <van-icon name="search" size="0.48rem" />
+        <!-- 搜索按钮 -->
+        <van-icon name="search" size="0.48rem" @click="$router.push('/search')" />
       </template>
     </van-nav-bar>
     <!-- 顶部频道标签 -->

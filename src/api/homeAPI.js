@@ -17,3 +17,9 @@ export const reqAllChannels = () => request({ url: '/v1_0/channels', method: 'ge
 
 // 添加频道：（覆盖）
 export const reqAddChannels = (channels) => request.put('/v1_0/user/channels', { channels })
+
+// 搜索联想、建议
+export const reqSearchSuggestion = (q) => request({ url: '/v1_0/suggestion', method: 'get', params: { q } })
+
+// 搜索结果
+export const reqSearchResult = (page, q) => request({ url: '/v1_0/search', method: 'get', params: { page, q } })

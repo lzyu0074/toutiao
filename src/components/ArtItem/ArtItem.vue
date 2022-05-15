@@ -16,7 +16,7 @@
         <div class="label-box">
           <span>作者:{{ articleObj.aut_name }} &nbsp;&nbsp; {{ articleObj.comm_count }}评论 &nbsp;&nbsp; 发布日期:{{ articleObj.pubdate | dateFormat }}</span>
           <!-- x 标签 -->
-          <van-icon name="cross" @click="clickX" />
+          <van-icon name="cross" @click="clickX" v-if="isShowX" />
         </div>
       </template>
     </van-cell>
@@ -33,6 +33,10 @@ export default {
     articleObj: {
       type: Object,
       required: true
+    },
+    isShowX: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

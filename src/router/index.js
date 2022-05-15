@@ -4,6 +4,8 @@ import UserLogin from '@/views/UserLogin/UserLogin.vue'
 import MainPage from '@/views/MainPage/MainPage.vue'
 import MyHome from '@/views/MyHome/MyHome.vue'
 import PersonalCenter from '@/views/PersonalCenter/PersonalCenter.vue'
+import ArtSearch from '@/views/ArtSearch/ArtSearch.vue'
+import SearchResult from '@/views/SearchResult/SearchResult.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +22,9 @@ const routes = [
       { path: 'home', component: MyHome, name: 'home' },
       { path: 'personalcenter', component: PersonalCenter, name: 'personalcenter' }
     ]
-  }
+  },
+  { path: '/search', component: ArtSearch, name: 'search' },
+  { path: '/searchresult/:searchword', component: SearchResult, name: 'searchresult', props: true }
 
 ]
 
