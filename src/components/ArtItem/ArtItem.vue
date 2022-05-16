@@ -1,5 +1,5 @@
 <template>
-  <div class="art-item-container">
+  <div class="art-item-container" @click="$router.push({ name: 'detail', params: { articleid: articleObj.art_id } })">
     <van-cell>
       <!-- 使用 title 插槽来自定义标题 -->
       <template #title>
@@ -16,7 +16,7 @@
         <div class="label-box">
           <span>作者:{{ articleObj.aut_name }} &nbsp;&nbsp; {{ articleObj.comm_count }}评论 &nbsp;&nbsp; 发布日期:{{ articleObj.pubdate | dateFormat }}</span>
           <!-- x 标签 -->
-          <van-icon name="cross" @click="clickX" v-if="isShowX" />
+          <van-icon name="cross" @click.stop="clickX" v-if="isShowX" />
         </div>
       </template>
     </van-cell>

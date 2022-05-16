@@ -6,6 +6,7 @@ import MyHome from '@/views/MyHome/MyHome.vue'
 import PersonalCenter from '@/views/PersonalCenter/PersonalCenter.vue'
 import ArtSearch from '@/views/ArtSearch/ArtSearch.vue'
 import SearchResult from '@/views/SearchResult/SearchResult.vue'
+import ArticleDetail from '@/views/ArticleDetail/ArticleDetail'
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,8 @@ const routes = [
     ]
   },
   { path: '/search', component: ArtSearch, name: 'search' },
-  { path: '/searchresult/:searchword', component: SearchResult, name: 'searchresult', props: true }
+  { path: '/searchresult/:searchword', component: SearchResult, name: 'searchresult', props: true },
+  { path: '/articledetail/:articleid', component: ArticleDetail, name: 'detail', props: true }
 
 ]
 

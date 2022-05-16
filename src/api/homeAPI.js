@@ -23,3 +23,17 @@ export const reqSearchSuggestion = (q) => request({ url: '/v1_0/suggestion', met
 
 // 搜索结果
 export const reqSearchResult = (page, q) => request({ url: '/v1_0/search', method: 'get', params: { page, q } })
+
+// 关注作者
+export const reqFollowings = (target) => request({ url: '/v1_0/user/followings', method: 'post', data: { target } })
+// 取消关注作者
+// export const reqCancelFollowings = (target) => request({ url: `/v1_0/user/followings/${target}`, method: 'delete' })
+export const reqCancelFollowings = (target) => request.delete(`/v1_0/user/followings/${target}`)
+
+// 文章详情
+export const reqArticleDetail = (id) => request({ url: `/v1_0/articles/${id}`, method: 'get' })
+
+// 收藏文章
+export const reqLikings = (id) => request({ url: '/v1_0/article/collections', method: 'post', data: { target: id } })
+// 取消收藏文章
+export const reqCancelLikings = (id) => request({ url: `/v1_0/article/collections/${id}`, method: 'delete' })
