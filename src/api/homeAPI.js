@@ -37,3 +37,15 @@ export const reqArticleDetail = (id) => request({ url: `/v1_0/articles/${id}`, m
 export const reqLikings = (id) => request({ url: '/v1_0/article/collections', method: 'post', data: { target: id } })
 // 取消收藏文章
 export const reqCancelLikings = (id) => request({ url: `/v1_0/article/collections/${id}`, method: 'delete' })
+
+// 获取评论
+export const reqComments = (type, source, offset) => request({ url: '/v1_0/comments', method: 'get', params: { type, source, offset } })
+
+// 评论点赞
+export const reqLikingComments = (target) => request({ url: '/v1_0/comment/likings', method: 'post', data: { target } })
+
+// 取消点赞
+export const reqCancelLikingComments = (target) => request({ url: `/v1_0/comment/likings/${target}`, method: 'delete' })
+
+// 发表评论
+export const reqGotoComment = (target, content, artId) => request({ url: '/v1_0/comments', method: 'post', data: { target, content, art_id: artId } })

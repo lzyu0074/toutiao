@@ -12,7 +12,7 @@
           <span>{{ articleDetail.aut_name }}</span>
         </template>
         <template #icon>
-          <img :src="articleDetail.aut_photo" width="50" height="50" />
+          <img :src="articleDetail.aut_photo" width="50" height="50" class="touxiang" />
         </template>
         <template #label> {{ articleDetail.pubdate | dateFormat }} </template>
         <template #default>
@@ -25,6 +25,7 @@
       <!-- 分割线 -->
       <van-divider />
 
+      <!-- 文章正文 -->
       <div class="article" v-html="articleDetail.content"></div>
 
       <van-divider>End</van-divider>
@@ -34,11 +35,13 @@
         <van-button icon="star-o" type="danger" v-else @click="onLikings(true)">已收藏</van-button>
       </div>
     </div>
+    <art-cmt :artid="articleDetail.art_id"></art-cmt>
   </div>
 </template>
 
 <script>
 import { reqArticleDetail, reqFollowings, reqCancelFollowings, reqLikings, reqCancelLikings } from '@/api/homeAPI'
+import ArtCmt from '@/components/ArtCmt/ArtCmt'
 export default {
   name: 'ArticleDetail',
   props: ['articleid'],
@@ -97,32 +100,55 @@ export default {
   },
   created() {
     this.initArticle()
+  },
+  components: {
+    ArtCmt
   }
 }
 </script>
 
 <style lang="less" scoped>
-.container {
-  padding-top: 46px;
+.touxiang {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #f8f8f8;
+  margin-right: 5px;
+  border: none;
+}
+.article-container {
+  margin-top: 46px;
 }
 // 关注按钮文字居中
 .van-button__text {
   line-height: 24px;
 }
+.container {
+  width: 100%;
+}
 
 .article-container {
   padding: 12px 15px;
-  text-indent: 12px;
+  // text-indent: 12px;
+}
+.van-cell {
+  padding: 5px 0;
+  &::after {
+    display: none;
+  }
 }
 .article {
   font-size: 12px;
   line-height: 24px;
-  h2 {
-    font-size: 12px !important;
-  }
+  // 不要让内容撑大总页面，让自身出现滚动条--start
+  width: 100%;
+  overflow-x: scroll;
+  // 不要让内容撑大总页面，让自身出现滚动条---end
+  word-break: break-all;
 }
 .btn-praise {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .title {
   font-size: 20px;
