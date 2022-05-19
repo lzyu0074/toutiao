@@ -35,7 +35,7 @@
     <!-- 操作面板 -->
     <van-cell-group class="action-card">
       <van-cell icon="edit" title="编辑资料" is-link clickable @click="$router.push({ name: 'useredit' })" />
-      <van-cell icon="chat-o" title="小思同学" is-link />
+      <van-cell icon="chat-o" title="小思同学" is-link @click="$router.push({ name: 'xiaosi' })" />
       <van-cell icon="warning-o" title="退出登录" is-link clickable @click="onLogout" />
     </van-cell-group>
   </div>

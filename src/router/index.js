@@ -8,6 +8,7 @@ import ArtSearch from '@/views/ArtSearch/ArtSearch.vue'
 import SearchResult from '@/views/SearchResult/SearchResult.vue'
 import ArticleDetail from '@/views/ArticleDetail/ArticleDetail'
 import UserEdit from '@/views/UserEdit/UserEdit'
+import XiaoSi from '@/views/XiaoSi/XiaoSi'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,8 @@ const routes = [
   { path: '/search', component: ArtSearch, name: 'search' },
   { path: '/searchresult/:searchword', component: SearchResult, name: 'searchresult', props: true },
   { path: '/articledetail/:articleid', component: ArticleDetail, name: 'detail', props: true },
-  { path: '/useredit', component: UserEdit, name: 'useredit' }
+  { path: '/useredit', component: UserEdit, name: 'useredit' },
+  { path: '/xiaosi', component: XiaoSi, name: 'xiaosi' }
 
 ]
 

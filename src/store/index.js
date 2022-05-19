@@ -73,5 +73,17 @@ export default new Vuex.Store({
       }
     }
   },
-  getters: {}
+  getters: {
+    // 计算用户头像
+    userAvatar(state) {
+      let imgUrl = 'https://img1.baidu.com/it/u=888366177,4101023314&fm=253&fmt=auto&app=138&f=JPEG?w=490&h=459'
+      if (state.userInfo.photo) {
+        imgUrl = state.userInfo.photo
+      }
+      return imgUrl
+    },
+    token(state) {
+      return state.tokenInfo.token
+    }
+  }
 })
