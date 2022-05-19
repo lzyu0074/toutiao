@@ -43,7 +43,6 @@ export default {
         // 设置vuex中的token并跳转路由
         this.$store.commit('updateTokenInfo', res.data)
         this.$router.push('/')
-        console.log(this.$route)
       }
     }
   }

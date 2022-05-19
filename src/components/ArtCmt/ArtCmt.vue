@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="isShow1 ? 'art-cmt-container-1' : 'art-cmt-container-2'">
     <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="10">
       <!-- 评论列表 -->
       <div class="cmt-list">
@@ -138,7 +138,6 @@ export default {
     scrollToCmtList() {
       // 当前滚动条的位置
       const now = window.scrollY
-      console.log('now::::::::::::::', now)
       // 目标位置（文章信息区域高度）
       const dist = document.querySelector('.article-container').offsetHeight
 
@@ -205,8 +204,8 @@ export default {
   left: 0;
 }
 // 为发表评论区域留出空间的类名
-.art-cmt-contaner-1 {
-  padding-top: 46px;
+.art-cmt-container-1 {
+  padding-bottom: 46px;
 }
 .art-cmt-container-2 {
   padding-bottom: 80px;
