@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <van-nav-bar title="小思同学" fixed left-arrow @click-left="$router.back()" />
+    <van-nav-bar title="小思同学" fixed left-arrow @click-left="onBack" />
 
     <!-- 聊天主体区域 -->
     <div class="chat-list">
       <div v-for="(chat, index) in chatList" :key="index">
         <!-- 左侧机器人 -->
         <div class="chat-item left" v-if="chat.name === 'xs'">
-          <van-image fit="cover" round src="https://fc1tn.baidu.com/it/u=2028190287,3575527984&fm=202&mola=new&crop=v1"></van-image>
+          <van-image fit="cover" round src="http://geek.itheima.net/resources/images/56.jpg"></van-image>
           <div class="chat-pao">{{ chat.msg }}</div>
         </div>
 
@@ -40,10 +40,15 @@ export default {
     return {
       word: '',
       // 聊天列表
-      chatList: [{ name: 'xs', msg: '你好，我是小思！' }]
+      chatList: [{ name: 'xs', msg: '你好，我是小思！' }],
+      fromLogin: false
     }
   },
   methods: {
+    // 顶部返回按钮
+    onBack() {
+      this.$router.push({ name: 'personalcenter' })
+    },
     // 发送消息
     send() {
       if (!this.word) return

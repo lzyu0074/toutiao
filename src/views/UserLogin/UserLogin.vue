@@ -42,7 +42,9 @@ export default {
       if (res.message === 'OK') {
         // 设置vuex中的token并跳转路由
         this.$store.commit('updateTokenInfo', res.data)
-        this.$router.push('/')
+        // 跳转路由前看看路由地址中有没有query有没有东西，有带东西的话，表示登录后要跳转到该页面，而不是直接跳到home
+        const location = this.$route.query.pre || '/'
+        this.$router.push(location)
       }
     }
   }
