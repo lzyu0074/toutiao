@@ -19,7 +19,7 @@ export default new Vuex.Store({
   state: initState,
 
   mutations: {
-    // 登录，更新token,payload是登录组件请求回来的登录token数据
+    // 登录，更新token,payload是登录组件请求回来的登录token数据，是一个对象，里面有token和refresh_token
     updateTokenInfo(state, payload) {
       // 存储token在vuex中
       state.tokenInfo = payload

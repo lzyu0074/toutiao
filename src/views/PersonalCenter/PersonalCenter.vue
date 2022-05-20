@@ -51,7 +51,7 @@ export default {
       try {
         await this.$store.dispatch('getUserInfo')
       } catch (error) {
-        this.$notify({ type: 'warning', message: error })
+        this.$notify({ type: 'warning', message: '登录已过期' })
       }
     },
     // 退出登录，清空本地存储的用户信息和token信息，并跳转到登录页
